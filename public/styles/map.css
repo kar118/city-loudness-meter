@@ -1,0 +1,57 @@
+aside {
+	width: 20vw;
+	padding: 1em;
+
+	position: relative;
+	box-sizing: border-box;
+}
+
+#map {
+	width: 80vw;
+	height: 100vh;
+}
+
+#searchBar {
+	position: relative;
+	
+	display: flex;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 .5rem #999;
+}
+
+#searchBar input {
+	width: 100%;
+	border: none;
+	font-size: 1rem;
+	padding: 0.75rem;
+	background: transparent;
+}
+
+#searchBar button {
+	right: 0;
+	position: absolute;
+	
+	opacity: 0.7;
+	height: 100%;
+	border: none;
+	cursor: pointer;
+	background: none;
+}
+
+#info {
+	left: 0;
+	bottom: 1em;
+	position: fixed;
+
+	margin: 0;
+	padding: 0;
+	
+	display: flex;
+	width: inherit;
+	list-style: none;
+	justify-content: space-around;
+}
+
+#info li {
+	padding: 0;
+}

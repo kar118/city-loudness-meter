@@ -1,0 +1,16 @@
+body {
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	font-family: "Noto Sans", "Lucida Grande", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+a {
+	color: #7694ba;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #4872a7;
+	text-decoration: underline;
+}
