@@ -46,4 +46,10 @@ public class SoundAndLocationApi {
     public List<FeatureCollection> getLocation(){
         return soundAndLocationManager.getLocation();
     }
+
+    @GetMapping("/true")
+    public boolean GetTrue(@RequestParam Long id){
+        return true;
+    }
+
 }
