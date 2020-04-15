@@ -1,6 +1,6 @@
 const heatmap = new ol.layer.Heatmap({
 	source: new ol.source.Vector({
-		url: '../api/data.geojson',
+		url: '../api/location/all',
 		format: new ol.format.GeoJSON()
 	}),
 	blur: 25,
