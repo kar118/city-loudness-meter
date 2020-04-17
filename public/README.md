@@ -13,3 +13,21 @@ server {
     }
 }
 ```
+To use nginx-served static files with real server API responses, add separate location for API.
+```
+server {
+    listen 80;
+    server_name local;
+
+    root /path/to/public;
+
+    location / {
+        index index.htm;
+        try_files $uri $uri.htm $uri/ index.htm;
+    }
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:8080/api/;
+    }
+}
+```
