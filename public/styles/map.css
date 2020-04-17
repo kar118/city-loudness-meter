@@ -55,3 +55,23 @@ aside {
 #info li {
 	padding: 0;
 }
+
+#filters {
+	margin: 1em 0;
+}
+
+#filters div {
+	display: flex;
+	justify-content: space-between;
+}
+
+#filters input, #filters span {
+	width: 40%;
+}
+
+#filters input {
+	border-radius: 0.5rem;
+	border: 1px solid #ccc;
+	padding: 0.5em;	
+	margin: 0.25em 0;
+}

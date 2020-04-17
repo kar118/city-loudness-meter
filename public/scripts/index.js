@@ -20,5 +20,3 @@ const map = new ol.Map({
 		zoom: 15
 	})
 })
-
-console.log(ol.source)
