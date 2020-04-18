@@ -8,6 +8,7 @@ import pl.pk.project.pz.sound_intensity.pojo.FeatureCollection;
 import pl.pk.project.pz.sound_intensity.pojo.convert.convertToFeatureCollection;
 
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,5 +45,20 @@ public class SoundAndLocationManager {
             List.add(convertToFeatureCollection.convertToFeatureCollection(soundAndLocationRepo.findAllByDateTimeBetween(first,second)));
         }
         return List;
+    }
+
+    public FeatureCollection getPointsBetweenDate(Long earlier,Long later){
+        if(earlier!=null&&later!=null){
+            return convertToFeatureCollection.convertToFeatureCollection(soundAndLocationRepo.findAllByDateTimeBetween(new Timestamp(earlier).toLocalDateTime(),new Timestamp(later).toLocalDateTime()));
+        }
+        else if(earlier==null){
+            return convertToFeatureCollection.convertToFeatureCollection(soundAndLocationRepo.findAllByDateTimeBetween(new Timestamp(1577836800).toLocalDateTime(),new Timestamp(later).toLocalDateTime()));
+        }
+        else if(later==null){
+            return convertToFeatureCollection.convertToFeatureCollection(soundAndLocationRepo.findAllByDateTimeBetween(new Timestamp(earlier).toLocalDateTime(),new Timestamp(System.currentTimeMillis()).toLocalDateTime()));
+        }
+        else{
+            return findAll();
+       }
     }
 }

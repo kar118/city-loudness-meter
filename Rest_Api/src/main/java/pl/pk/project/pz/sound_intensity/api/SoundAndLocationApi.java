@@ -1,6 +1,5 @@
 package pl.pk.project.pz.sound_intensity.api;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +8,7 @@ import pl.pk.project.pz.sound_intensity.manager.SoundAndLocationManager;
 import pl.pk.project.pz.sound_intensity.pojo.FeatureCollection;
 
 import javax.validation.Valid;
+
 import java.util.*;
 
 @RestController
@@ -23,8 +23,13 @@ public class SoundAndLocationApi {
     }
 
     @GetMapping("/all")
-    public FeatureCollection getAll(){
-        return soundAndLocationManager.findAll();
+    public FeatureCollection getAll(@RequestParam(name = "fromDate",required = false)Long fromDate,
+                                    @RequestParam(name ="toDate",required = false)Long toDate)throws Exception{
+        if(fromDate==null&&toDate==null){
+            return soundAndLocationManager.findAll();
+        }else{
+            return soundAndLocationManager.getPointsBetweenDate(fromDate,toDate);
+        }
     }
 
     @GetMapping
