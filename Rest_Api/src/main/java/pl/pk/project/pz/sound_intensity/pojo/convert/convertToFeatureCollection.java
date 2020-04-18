@@ -18,8 +18,8 @@ public  class convertToFeatureCollection {
              ) {
             Properties properties=new Properties(exp.getMagnitude());
             Double[] tab=new Double[2];
-            tab[0]=exp.getLatitude();
-            tab[1]=exp.getLongitude();
+            tab[0]=exp.getLongitude();
+            tab[1]=exp.getLatitude();
             Geometry geometry=new Geometry(tab);
             features.add(new Features(properties,geometry));
         }
