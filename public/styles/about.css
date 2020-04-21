@@ -1,0 +1,52 @@
+body {
+	background-image: linear-gradient(to right, #ddd , #fff);
+	margin: 0;
+    display: flex;
+	justify-content: center;
+	font-family: "Noto Sans", "Lucida Grande", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+main{
+    padding-bottom: 5em;
+}
+
+a {
+	color: #7694ba;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #4872a7;
+	text-decoration: underline;
+}
+h1{
+	text-align: center;
+    color: #45789a;
+}
+
+.panel, .flip {
+    padding: 0.5em;;
+	margin-top: 1em;
+	text-align: center;
+	border-bottom: solid 0.07em #45789a;
+	color: #282227;
+    cursor: pointer;
+}
+  
+.panel {
+	padding: 1em;
+	display: none;
+    border-bottom: none;
+}
+
+.img-galaxy{
+	margin: 1em 0 1em 0;
+	width: 100%;
+}
+
+@media screen and (max-width: 1060px) {
+    main {
+        width: 100vw;
+        height: 100vp;
+    }
+  }
