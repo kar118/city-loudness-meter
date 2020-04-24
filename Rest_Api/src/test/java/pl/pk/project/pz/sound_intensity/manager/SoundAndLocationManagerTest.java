@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.internal.matchers.Null;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.pk.project.pz.sound_intensity.dao.SoundAndLocationRepo;
@@ -18,8 +19,11 @@ import static org.junit.Assert.assertEquals;
 import java.sql.Timestamp;
 import java.time.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import static org.junit.Assert.assertNull;
 import static org.mockito.BDDMockito.*;
 import pl.pk.project.pz.sound_intensity.pojo.convert.convertToFeatureCollection;
 
@@ -45,9 +49,9 @@ public class SoundAndLocationManagerTest {
     }
 
     @Test
-    public void findByIdEqualsAnyLong() {
+    public void findById_IdEqualsAnyLong() {
 
-        //Get any it to test
+        //Get any id to test
         final Long id = anyLong();
 
         //SoundAndLocation Object for test
@@ -64,7 +68,27 @@ public class SoundAndLocationManagerTest {
     }
 
     @Test
-    public void findAllWithFourElements() {
+    public void findById_IdIsNegative(){
+
+        //Get id to test
+        final Long id = -2L;
+
+        //SoundAndLocation Object for test
+        final SoundAndLocation soundAndLocation = new SoundAndLocation();
+        soundAndLocation.setId(id);
+
+        //given
+        given(soundAndLocationRepo.findById(id)).willReturn(Optional.empty());
+        //when
+        Optional expectedResult =  soundAndLocationManager.findById(id);
+        //then
+        verify(soundAndLocationRepo).findById(id);
+        assertEquals(expectedResult,Optional.empty());
+
+    }
+
+    @Test
+    public void findAll_WithFourElements() {
 
         //Data for SoundAndLocation Objects
         double latitude = 10.0;
@@ -92,7 +116,21 @@ public class SoundAndLocationManagerTest {
     }
 
     @Test
-    public void saveIsCorrect() {
+    public void findAll_EmptyList(){
+
+        FeatureCollection featureCollection = new FeatureCollection(Collections.emptyList());
+
+        //given
+        given(soundAndLocationRepo.findAll()).willReturn(Collections.emptyList());
+        //when
+        FeatureCollection featureCollectionResult = soundAndLocationManager.findAll();
+        //then
+        verify(soundAndLocationRepo).findAll();
+        assertEquals(featureCollectionResult,featureCollection);
+    }
+
+    @Test
+    public void save_IsCorrect() {
 
         //Data for SoundAndLocation Object
         double latitude = 10.0;
@@ -105,7 +143,7 @@ public class SoundAndLocationManagerTest {
     }
 
     @Test
-    public void deleteByIdTryInvokeTwoTimesForOneObject() {
+    public void deleteById_TryInvokeTwoTimesForOneObject() {
 
         final Long id = 1L;
 
@@ -120,7 +158,7 @@ public class SoundAndLocationManagerTest {
     }
 
     @Test
-    public void getPointsBetweenDateWhenNotNullValuesGivenAndOrdered() {
+    public void getPointsBetweenDate_WhenNotNullValuesGivenAndOrdered() {
 
         //Data for repository function
         final LocalDateTime firstDate = LocalDateTime.of(2015, Month.JUNE, 29, 10, 30, 40);
